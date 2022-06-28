@@ -1,9 +1,9 @@
 import { Table } from './Table';
 //import food  Menu class 
-import {FoodMenu} from "../FOOD/FoodMenu"
+import {FoodMenu} from "../FOOD CATEGORY/FoodMenu"
 
 //import drinking class 
-import {Drinking} from "../DRINKING/DrinkingCategory"
+import {Drinking} from "../FOOD CATEGORY/DrinkingCategory"
 
 
 export class Customer{
@@ -12,7 +12,7 @@ export class Customer{
         public foodOrder:{Name:string,NumberOfOrder:number}[]=[],
         public tableSitID: number,
         public numberOfCustomer:number,
-        public allDrinking:{Name:string,NumberOfOrder:number}[]=[]
+        public allDrinking:{Name:string,NumberOfOrder:number}[]=[],
 
     ){}
 
@@ -23,6 +23,7 @@ export class Customer{
         }
         return result;
     }
+
 
     getCustomerOrderDrinking():string{
         let result = "";
@@ -40,11 +41,14 @@ export class Customer{
         return this.numberOfCustomer;
     }
 
-    changeTableSitTo(id:number){
+    changeTableSitTo(odlId:number,id:number){
         let table = new Table();
-        if(table.hasCustomerOnTable(id)===false){
-            return this.tableSitID = id;
+        if(table.hasCustomerOnTable(id)=="No customers" && table.getTableBooked().indexOf(id) != -1){
+           
+            table.addTableBooked(4);
+             return "Your change was successful!";
         }
+        return "Sorry that table is already booked;"
     }
 
     getCustomerOrderByTableID(id:number){

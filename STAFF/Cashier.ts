@@ -1,8 +1,8 @@
 //import food  Menu class 
-import {FoodMenu} from "../FOOD/FoodMenu";
+import {FoodMenu} from "../FOOD CATEGORY/FoodMenu";
 
 //import drinking class 
-import {Drinking} from "../DRINKING/DrinkingCategory";
+import {Drinking} from "../FOOD CATEGORY/DrinkingCategory";
 
 // import customer class 
 import {Customer} from "../CUSTOMERS/Customer";

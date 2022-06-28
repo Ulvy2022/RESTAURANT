@@ -1,5 +1,4 @@
-//impot foodMenu 
-import {FoodMenu} from "././FOOD/FoodMenu";
+
 
 //import information relate to customers
 import {Customer} from "././CUSTOMERS/Customer";
@@ -33,5 +32,19 @@ let customersOrderDrinking = [
     {"Name":"Tea",NumberOfOrder:1},
 ]
 let customers = new Customer(customersOrderFood,2,5,customersOrderDrinking);
+// console.log(customers.getCustomerOrderByTableID(2));
 
+let customers1 = new Customer(customersOrderFood,4,5,customersOrderDrinking);
+
+let table = new Table();
+// table.addTableBooked(2)
+
+console.log(table.hasCustomerOnTable(2));
+
+// let cashiw = new Cashier();
+// console.log(cashiw.getTotalPriceOfFood(customersOrderFood));
+
+console.log(customers1.changeTableSitTo(7,3));
+
+console.log(table.getTableBooked());
 
