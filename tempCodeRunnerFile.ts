@@ -37,17 +37,4 @@ let customers = new Customer(customersOrderFood,2,5,customersOrderDrinking);
 let customers1 = new Customer(customersOrderFood,4,5,customersOrderDrinking);
 
 let table = new Table();
-table.addTableBooked(customers1.getTableSit());
-table.addTableBooked(customers.getTableSit());
-
-// console.log(table.hasCustomerOnTable(2));
-
-
-
-console.log(table.getTableBooked());
-
-console.log(table.changeTableSitTo(4,8));
-
-console.log(table.getTableBooked());
-
- 
+// table.addTableBooked(2)

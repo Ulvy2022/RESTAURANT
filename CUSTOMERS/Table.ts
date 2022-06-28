@@ -1,4 +1,3 @@
-import {Customer} from "../CUSTOMERS/Customer";
 
 export class Table{
      allTable:number[]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
@@ -22,7 +21,7 @@ export class Table{
     }
 
     addTableBooked(id:number){
-        return this.tableBooked.push(id)
+         this.tableBooked.push(id)
     }
 
     getTableBooked(){
@@ -31,10 +30,37 @@ export class Table{
 
     findFreeTable(){
         let freeTable:number[]=[]
-        for (let value of this.getTableBooked()){
-            if(this.getAlltable().indexOf(value)== -1){
+        for (let value of this.getAlltable()){
+            if(this.getTableBooked().indexOf(value)== -1){
                 freeTable.push(value);
             }
         }
+        return freeTable;
+    }
+
+    setTableTo(oldID:number,newID:number){
+        for (let id=0;id<this.tableBooked.length; id++){
+            if(this.tableBooked[id] == oldID){
+                this.tableBooked[id] = newID;
+            }
+        }
+        return "Succes updated"
+    }
+
+    changeTableSitTo(oldID:number,newID:number){
+        let table = new Table();
+        if(oldID == newID){
+            return "Your new table ID can't be the same as the old one ):"
+        }
+        else if(newID<=16 ){
+            
+            for (let id=0;id<this.tableBooked.length; id++){
+                if(this.tableBooked[id] == oldID){
+                    this.tableBooked[id] = newID;
+                }
+            }
+            return "Sorry that table is already booked :("
+        }
+        return "Your tablID doesn't exist ):"
     }
 }
