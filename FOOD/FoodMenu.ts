@@ -1,20 +1,20 @@
 
 
 export class FoodMenu{
-    public food:[
-        {name:"Koko",Price:5},
-        {name:"Kare",Price:4},
-        {name:"Chha Kdav",Price:7},
-        {name:"Sgoar Jruk",Price:6},
-        {name:"Tong Yam",Price:8},
-        {name:"Chha Spei",Price:9},
-        {name:"Trey Sweet",Price:15},
-    ]
+    public food:{"Name":string,"Price":number}[]=[
+        {"Name":"Koko",Price:5},
+        {"Name":"Kare",Price:4},
+        {"Name":"Chha Kdav",Price:7},
+        {"Name":"Sgoar Jruk",Price:6},
+        {"Name":"Tong Yam",Price:8},
+        {"Name":"Chha Spei",Price:9},
+        {"Name":"Trey Sweet",Price:15},
+    ];
 
     getPrice(foodName:string):number{
         let price:number=0;
         for (let value of this.food){
-            if(value.name === foodName){
+            if(value.Name === foodName){
                 price=value.Price
             
             }
@@ -23,6 +23,7 @@ export class FoodMenu{
     }
 
     getAllFood(){
+        
         return this.food;
     }
 }

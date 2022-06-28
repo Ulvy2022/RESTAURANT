@@ -1,28 +1,19 @@
+//import person class
 import {Person} from '../ENUM/Person';
 
+// import  staff class
+import {Staff} from '../STAFF/Staff';
 
-export class Staff extends Person {
+export class Manager extends Person{
     private salary:number;
-    public staffID:number;
-    public staffs:Staff[]=[];
-
+    
     constructor(name: string, 
         age: number,
         phone: number,
         salary:number,
         category:string,
-        staffID:number,
         address:string){
         super(name, age, phone,category,address)
         this.salary=salary;
-        this.staffID=staffID;
-    }
-
-    getSalary(){
-        return this.salary;
-    }
-
-    addStaff(staff: Staff){
-        return this.staffs.push(staff);
     }
 }
