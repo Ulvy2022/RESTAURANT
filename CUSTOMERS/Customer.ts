@@ -16,21 +16,15 @@ export class Customer{
 
     ){}
 
-    getCustomerOrderFood():string{
-        let result = "";
-        for (let value of this.foodOrder){
-            result += "Name :"+value.Name+"; NumberOfOrder :"+value.NumberOfOrder+"\n"
-        }
-        return result;
+    getCustomerOrderFood(){
+    
+        return this.foodOrder;
     }
 
 
-    getCustomerOrderDrinking():string{
-        let result = "";
-        for (let value of this.allDrinking){
-            result += "Name :"+value.Name+"; NumberOfOrder :"+value.NumberOfOrder+"\n"
-        }
-        return result;
+    getCustomerOrderDrinking(){
+      
+        return this.allDrinking;
     }
 
     getTableSit(){
@@ -41,27 +35,35 @@ export class Customer{
         return this.numberOfCustomer;
     }
 
-    changeTableSitTo(odlId:number,id:number){
-        let table = new Table();
-        if(odlId == id){
-            return "Your new table ID can't be the same as the old one ):"
-        }
-        else if(id<=16 ){
-            
-            if(table.hasCustomerOnTable(id)=="No customers" ){
-               
-                table.setTableTo(odlId,id);
-                return "Your change was successful ):";
-            }
-            return "Sorry that table is already booked :("
-        }
-        return "Your tablID doesn't exist ):"
-    }
 
     getCustomerOrderByTableID(id:number){
         return this.getCustomerOrderFood()+"\n"+this.getCustomerOrderDrinking();
     }
     
+    cancelOrderFood(name:string){
+        for (let food=0; food<this.foodOrder.length; food++){
+            if(this.foodOrder[food].Name==name){
+                this.foodOrder.splice(food,1);
+            
+            }
+        }
+    }
 
+    orderMoreFood(foods:{Name:string,NumberOfOrder:number}[]){
+        for (let food of foods){
+            this.allDrinking.push(food);
+        }
+    }
 
+    orderMoreDrinking(drinking:{Name:string,NumberOfOrder:number}[]){
+        for (let value of drinking){
+            this.allDrinking.push(value);
+        }
+    }
+
+    getAllCustomersOrder(){
+        return this.getCustomerOrderDrinking() +"\n" +this.getCustomerOrderFood();
+    }
+
+    
 }
