@@ -41,22 +41,22 @@ export class Customer{
         return this.numberOfCustomer;
     }
 
-    // changeTableSitTo(odlId:number,id:number){
-    //     let table = new Table();
-    //     if(odlId == id){
-    //         return "Your new table ID can't be the same as the old one ):"
-    //     }
-    //     else if(id<=16 ){
+    changeTableSitTo(odlId:number,id:number){
+        let table = new Table();
+        if(odlId == id){
+            return "Your new table ID can't be the same as the old one ):"
+        }
+        else if(id<=16 ){
             
-    //         if(table.hasCustomerOnTable(id)=="No customers" ){
+            if(table.hasCustomerOnTable(id)=="No customers" ){
                
-    //             table.setTableTo(odlId,id);
-    //             return "Your change was successful ):";
-    //         }
-    //         return "Sorry that table is already booked :("
-    //     }
-    //     return "Your tablID doesn't exist ):"
-    // }
+                table.setTableTo(odlId,id);
+                return "Your change was successful ):";
+            }
+            return "Sorry that table is already booked :("
+        }
+        return "Your tablID doesn't exist ):"
+    }
 
     getCustomerOrderByTableID(id:number){
         return this.getCustomerOrderFood()+"\n"+this.getCustomerOrderDrinking();

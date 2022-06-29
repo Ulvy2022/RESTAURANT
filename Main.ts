@@ -31,18 +31,18 @@ let customersOrderDrinking = [
     {"Name":"Coffee",NumberOfOrder:1},
     {"Name":"Tea",NumberOfOrder:1},
 ]
+// customer 
 let customers = new Customer(customersOrderFood,2,5,customersOrderDrinking);
 // console.log(customers.getCustomerOrderByTableID(2));
-
 let customers1 = new Customer(customersOrderFood,4,5,customersOrderDrinking);
+// order
+console.log();
 
 let table = new Table();
 table.addTableBooked(customers1.getTableSit());
 table.addTableBooked(customers.getTableSit());
 
-// console.log(table.hasCustomerOnTable(2));
-
-
+console.log(table.hasCustomerOnTable(2));
 
 console.log(table.getTableBooked());
 
