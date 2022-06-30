@@ -22,7 +22,5 @@ export class Staff extends Person {
         return this.salary;
     }
 
-    addStaff(staff: Staff){
-        return this.staffs.push(staff);
-    }
+    
 }

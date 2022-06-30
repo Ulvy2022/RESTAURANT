@@ -19,7 +19,7 @@ export class Cashier extends Customer{
         {"Name":"WING","AccountID":43532823},
         {"Name":"Cash","AccountID":0o0}
     ]
-    getAllMethod(){
+     getAllMethod(){
 
         return this.method;
     };
@@ -34,6 +34,7 @@ export class Cashier extends Customer{
          return ifMatchPayment;
     }
 
+  
 
     getTotalPriceOfFood(allFood:{Name:string,NumberOfOrder:number}[]):number {
         let totalPrice:number = 0;
@@ -64,6 +65,10 @@ export class Cashier extends Customer{
         }
         totalPrice += price;
         return  price ;
+    }
+
+    getTotalPriceWith(tableID:number){
+        return this.getTotalPrice();
     }
 
     getTotalPrice(){
@@ -122,7 +127,25 @@ export class Cashier extends Customer{
         return result;
     }
 
-        getTableSited(){
-            return "Customer sit on table "+ this.getTableSit()
+    getTableSited(){
+        return "Customer sit on table "+ this.getTableSit()
+    }
+
+
+    getCustomerOrderByTableID(id:number){
+        if(id<=16){
+            if(this.tableSitID == id && this.foodOrder.length>0 && this.allDrinking.length>0){
+                return this.foodOrder,this.allDrinking;
+            }else if (this.tableSitID == id || this.foodOrder.length<0 || this.allDrinking.length<0){
+                return "This tableID is have no customer!"
+            }
         }
+        else if(id>16){
+            return "Sorry tableID not found!";
+        }
+        
+    }
+
+   
+
 }

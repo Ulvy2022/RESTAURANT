@@ -1,10 +1,11 @@
 export abstract class Person{
     constructor(
-        protected name: string,
-        protected age: number,
-        protected phone: number,
-        protected category: string,
-        protected address: string,
+        public name: string,
+        public age: number,
+        public phone: number,
+        public category: string,
+        public address: string,
     ){}
 
+  
 }

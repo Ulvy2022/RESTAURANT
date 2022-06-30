@@ -10,14 +10,14 @@ export class Customer{
 
     constructor(
         public foodOrder:{Name:string,NumberOfOrder:number}[]=[],
-        public tableSitID: number,
+        public tableSitID:number,
         public numberOfCustomer:number,
         public allDrinking:{Name:string,NumberOfOrder:number}[]=[],
 
     ){}
 
     getCustomerOrderFood(){
-    
+        
         return this.foodOrder;
     }
 
@@ -27,24 +27,29 @@ export class Customer{
         return this.allDrinking;
     }
 
-    getTableSit(){
-        return this.tableSitID;
-    }
 
     getNumberOfCustomer(){
         return this.numberOfCustomer;
-    }
-
-
-    getCustomerOrderByTableID(id:number){
-        return this.getCustomerOrderFood()+"\n"+this.getCustomerOrderDrinking();
-    }
+    } 
     
-    cancelOrderFood(name:string){
-        for (let food=0; food<this.foodOrder.length; food++){
-            if(this.foodOrder[food].Name==name){
-                this.foodOrder.splice(food,1);
-            
+    cancelOrderFood(name:string[]){
+        for (let value of name){
+            for (let food=0; food<this.foodOrder.length; food++){
+                if(this.foodOrder[food].Name==value){
+                    this.foodOrder.splice(food,1);
+                
+                }
+            }
+        }
+    }
+
+    cancelOrderDrinking(name:string[]){
+        for (let value of name){
+            for (let drink=0; drink<this.allDrinking.length; drink++){
+                if(this.allDrinking[drink].Name==value){
+                    this.allDrinking.splice(drink,1);
+                
+                }
             }
         }
     }
@@ -61,9 +66,31 @@ export class Customer{
         }
     }
 
-    getAllCustomersOrder(){
-        return this.getCustomerOrderDrinking() +"\n" +this.getCustomerOrderFood();
+    minusOrderFood(minus:{name:string,numberMinusOrder:number}[]){
+        for(let value of this.foodOrder){
+            for(let mi of minus){
+                if(mi.name === value.Name){
+                    value.NumberOfOrder -= mi.numberMinusOrder;
+                }
+            }
+        }
+
+        
     }
 
+    minusOrderDrink(minus:{name:string,numberMinusOrder:number}[]){
+        for(let value of minus){
+            for(let drink of this.allDrinking){
+                if(drink.Name === value.name){
+                    drink.NumberOfOrder -= value.numberMinusOrder;
+                }
+            }
+        }
+    }
+
+ 
+    getTableSit(){
+        return this.tableSitID;
+    }
     
 }
