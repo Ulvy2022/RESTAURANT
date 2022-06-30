@@ -48,9 +48,6 @@ var Cashier = /** @class */ (function (_super) {
         }
         return ifMatchPayment;
     };
-    Cashier.prototype.getAllOrderInADay = function () {
-        return this.ordereList;
-    };
     Cashier.prototype.getTotalPriceOfFood = function (allFood) {
         var totalPrice = 0;
         var food = new FoodMenu_1.FoodMenu();
@@ -124,13 +121,13 @@ var Cashier = /** @class */ (function (_super) {
         }
         return result;
     };
-    Cashier.prototype.getCustomerOrderFoodWithPrice = function () {
+    Cashier.prototype.getCustomerOrderFoodWithPrice = function (foods) {
         var result = "              Food customer has ordered: \n";
         var food = new FoodMenu_1.FoodMenu();
         for (var _i = 0, _a = food.getAllFood(); _i < _a.length; _i++) {
             var value = _a[_i];
-            for (var _b = 0, _c = this.foodOrder; _b < _c.length; _b++) {
-                var food_1 = _c[_b];
+            for (var _b = 0, foods_1 = foods; _b < foods_1.length; _b++) {
+                var food_1 = foods_1[_b];
                 if (food_1.Name == value.Name) {
                     result += "Name :" + food_1.Name + "; NumberOfOrder :" + food_1.NumberOfOrder + "  ; Price : " + value.Price * food_1.NumberOfOrder + " dollars" + "\n";
                 }

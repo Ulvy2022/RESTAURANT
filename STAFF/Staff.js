@@ -21,7 +21,6 @@ var Staff = /** @class */ (function (_super) {
     __extends(Staff, _super);
     function Staff(name, age, phone, salary, category, staffID, address) {
         var _this = _super.call(this, name, age, phone, category, address) || this;
-        _this.staffs = [];
         _this.salary = salary;
         _this.staffID = staffID;
         return _this;
@@ -29,18 +28,11 @@ var Staff = /** @class */ (function (_super) {
     Staff.prototype.getSalary = function () {
         return this.salary;
     };
-    Staff.prototype.addStaff = function (staff) {
-        return this.staffs.push(staff);
+    Staff.prototype.getStaffID = function () {
+        return this.staffID;
     };
-    Staff.prototype.getStaffByCategory = function (categoryName) {
-        var result;
-        for (var _i = 0, _a = this.staffs; _i < _a.length; _i++) {
-            var staff = _a[_i];
-            if (staff.category == categoryName) {
-                result.push(staff);
-            }
-        }
-        return result;
+    Staff.prototype.changeSalary = function (updatedSalary) {
+        this.salary = updatedSalary;
     };
     return Staff;
 }(Person_1.Person));

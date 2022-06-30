@@ -9,17 +9,12 @@ var Customer = /** @class */ (function () {
         this.tableSitID = tableSitID;
         this.numberOfCustomer = numberOfCustomer;
         this.allDrinking = allDrinking;
-        this.ordereList = [];
-        this.lisOrderEachCustomer = [];
     }
     Customer.prototype.getCustomerOrderFood = function () {
         return this.foodOrder;
     };
     Customer.prototype.getCustomerOrderDrinking = function () {
         return this.allDrinking;
-    };
-    Customer.prototype.getTableSit = function () {
-        return this.tableSitID;
     };
     Customer.prototype.getNumberOfCustomer = function () {
         return this.numberOfCustomer;
@@ -28,7 +23,7 @@ var Customer = /** @class */ (function () {
         for (var _i = 0, name_1 = name; _i < name_1.length; _i++) {
             var value = name_1[_i];
             for (var food = 0; food < this.foodOrder.length; food++) {
-                if (this.foodOrder[food].Name == value) {
+                if (this.foodOrder[food].Name.toUpperCase() == value.toUpperCase()) {
                     this.foodOrder.splice(food, 1);
                 }
             }
@@ -45,24 +40,18 @@ var Customer = /** @class */ (function () {
         }
     };
     Customer.prototype.orderMoreFood = function (foods) {
-        for (var _i = 0, foods_1 = foods; _i < foods_1.length; _i++) {
-            var food = foods_1[_i];
-            this.allDrinking.push(food);
-        }
+        Array.prototype.push.apply(this.foodOrder, foods);
     };
     Customer.prototype.orderMoreDrinking = function (drinking) {
-        for (var _i = 0, drinking_1 = drinking; _i < drinking_1.length; _i++) {
-            var value = drinking_1[_i];
-            this.allDrinking.push(value);
-        }
+        Array.prototype.push.apply(this.allDrinking, drinking);
     };
     Customer.prototype.minusOrderFood = function (minus) {
         for (var _i = 0, _a = this.foodOrder; _i < _a.length; _i++) {
             var value = _a[_i];
             for (var _b = 0, minus_1 = minus; _b < minus_1.length; _b++) {
                 var mi = minus_1[_b];
-                if (mi.name === value.Name) {
-                    value.NumberOfOrder -= mi.numberMinusOrder;
+                if (mi.Name === value.Name) {
+                    value.NumberOfOrder -= mi.NumberMinusOrder;
                 }
             }
         }
@@ -78,14 +67,8 @@ var Customer = /** @class */ (function () {
             }
         }
     };
-    Customer.prototype.addToorderedList = function () {
-        this.lisOrderEachCustomer.push(this.tableSitID);
-        this.lisOrderEachCustomer.push(this.foodOrder);
-        this.lisOrderEachCustomer.push(this.allDrinking);
-        this.ordereList.push(this.lisOrderEachCustomer);
-    };
-    Customer.prototype.getAllOrderList = function () {
-        return this.ordereList;
+    Customer.prototype.getTableSit = function () {
+        return this.tableSitID;
     };
     return Customer;
 }());

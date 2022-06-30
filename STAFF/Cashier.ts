@@ -111,12 +111,12 @@ export class Cashier extends Customer{
         return result;
     }
 
-    getCustomerOrderFoodWithPrice(){
+    getCustomerOrderFoodWithPrice(foods:{Name:string,NumberOfOrder:number}[]){
         let result = "              Food customer has ordered: \n";
         let food = new FoodMenu();
         
         for (let value of food.getAllFood()){
-            for (let food of this.foodOrder){
+            for (let food of foods){
                 if(food.Name == value.Name){
 
                     result += "Name :"+food.Name+"; NumberOfOrder :"+food.NumberOfOrder+"  ; Price : "+value.Price*food.NumberOfOrder+" dollars"+"\n";

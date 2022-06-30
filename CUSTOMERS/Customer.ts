@@ -35,7 +35,7 @@ export class Customer{
     cancelOrderFood(name:string[]){
         for (let value of name){
             for (let food=0; food<this.foodOrder.length; food++){
-                if(this.foodOrder[food].Name==value){
+                if(this.foodOrder[food].Name.toUpperCase()==value.toUpperCase()){
                     this.foodOrder.splice(food,1);
                 
                 }
@@ -55,22 +55,19 @@ export class Customer{
     }
 
     orderMoreFood(foods:{Name:string,NumberOfOrder:number}[]){
-        for (let food of foods){
-            this.allDrinking.push(food);
-        }
+            Array.prototype.push.apply(this.foodOrder,foods); 
+        
     }
 
     orderMoreDrinking(drinking:{Name:string,NumberOfOrder:number}[]){
-        for (let value of drinking){
-            this.allDrinking.push(value);
-        }
+        Array.prototype.push.apply(this.allDrinking,drinking); 
     }
 
-    minusOrderFood(minus:{name:string,numberMinusOrder:number}[]){
+    minusOrderFood(minus:{Name:string,NumberMinusOrder:number}[]){
         for(let value of this.foodOrder){
             for(let mi of minus){
-                if(mi.name === value.Name){
-                    value.NumberOfOrder -= mi.numberMinusOrder;
+                if(mi.Name === value.Name){
+                    value.NumberOfOrder -= mi.NumberMinusOrder;
                 }
             }
         }

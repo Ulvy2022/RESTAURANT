@@ -2,9 +2,8 @@ import {Person} from '../ENUM/Person';
 
 
 export class Staff extends Person {
-    private salary:number;
+    public salary:number;
     public staffID:number;
-    public staffs:Staff[]=[];
 
     constructor(name: string, 
         age: number,
@@ -22,5 +21,11 @@ export class Staff extends Person {
         return this.salary;
     }
 
-    
+    getStaffID(){
+        return this.staffID;
+    }
+
+    changeSalary(updatedSalary:number){
+        this.salary = updatedSalary;
+    }
 }
