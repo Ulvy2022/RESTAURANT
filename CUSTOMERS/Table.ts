@@ -35,7 +35,11 @@ export class Table{
                 freeTable.push(value);
             }
         }
-        return freeTable;
+        let result = "ALl free tables are: \n";
+        for (let id of freeTable){
+            result += "table ID : "+ id.toString()+"\n"
+        }
+        return result;
     }
 
     setTableTo(oldID:number,newID:number){

@@ -22,6 +22,11 @@ export class HR extends Person{
     }
 
     addStaff(staff: Staff){
+        for (let id of this.staffs){
+            if(id.staffID == staff.staffID){
+                return "the staff ID cannot be the same..!"
+            }
+        }
         return this.staffs.push(staff);
     }
 
@@ -68,8 +73,14 @@ export class HR extends Person{
         return this.staffs;
     }
 
-    getNumberOFStaff(){
-        return "Your all  staffs are "+this.staffs.length
+    getNumberOFStaffBy(category:string){
+        let reuslt = 0;
+        for (let value of this.staffs){
+            if(value.category==category){
+                reuslt ++
+            }
+        }
+        return "Your all staffs for"+category+" position are "+this.staffs.length+" staffs"
     }
 
     resignStaff(id:number){
@@ -91,7 +102,18 @@ export class HR extends Person{
                 return staff;
             }
         }
-        return [];
+        return "Update failded";
+    }
+
+
+    changePositionStaffTO(name:string,staffID:number){
+        for(let staff of this.staffs){
+            if(staff.staffID==staffID){
+                staff.category = name;
+                return staff;
+            }
+        }
+        return "Update position failded"
     }
 
     

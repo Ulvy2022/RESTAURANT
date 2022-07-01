@@ -8,7 +8,7 @@ import {Drinking} from "../FOOD CATEGORY/DrinkingCategory";
 import {Customer} from "../CUSTOMERS/Customer";
 
 
-
+let totalPrice:number = 0;
 
 
 export class Cashier extends Customer{
@@ -19,16 +19,29 @@ export class Cashier extends Customer{
         {"Name":"WING","AccountID":43532823},
         {"Name":"Cash","AccountID":0o0}
     ]
+    public listOfPaid:number[]=[]
+
      getAllMethod(){
 
         return this.method;
     };
 
-    paymentBy(name:string):string{
+    getAllCustomerAlreadyPaid(){
+        let result ="The customer already paid set on tableID: \n";
+        for (let value of this.listOfPaid){
+            result += "table ID : "+value.toString()+"\n";
+        }
+        return result;
+    }
+
+
+
+    paymentBy(name:string,tableID:number){
          let ifMatchPayment ="Sorry we don't have "+name+" account!";
          for (let value of this.method){ 
-            if(value.Name === name){
-                ifMatchPayment = "Table ID "+this.getTableSit()+" already paid thanks you >3 ";
+            if(value.Name === name  && tableID<=16){
+                this.listOfPaid.push(tableID);
+                // ifMatchPayment = "Table ID "+this.getTableSit()+" already paid by "+name;
             }
          }
          return ifMatchPayment;
@@ -37,7 +50,7 @@ export class Cashier extends Customer{
   
 
     getTotalPriceOfFood(allFood:{Name:string,NumberOfOrder:number}[]):number {
-        let totalPrice:number = 0;
+        // let totalPrice:number = 0;
         let food = new FoodMenu();
         let price:number=0;
         for (let foodName of allFood){
@@ -53,7 +66,7 @@ export class Cashier extends Customer{
 
 
     getTotalPriceOfDrinking(allDrinking:{Name:string,NumberOfOrder:number}[]):number {
-        let totalPrice:number = 0;
+        // let totalPrice:number = 0;
         let drinking = new Drinking();
         let price:number=0;
         for (let drinkingName of allDrinking){
@@ -67,40 +80,19 @@ export class Cashier extends Customer{
         return  price ;
     }
 
-    getTotalPriceWith(tableID:number){
-        return this.getTotalPrice();
+    getTotalPrice(food:{Name:string,NumberOfOrder:number}[],drinking:{Name:string,NumberOfOrder:number}[]){
+      
+        this.getTotalPriceOfDrinking(drinking);
+        this.getTotalPriceOfFood(food);
+        return "Total price : " +totalPrice+" dollars";
     }
 
-    getTotalPrice(){
-        let totalPrice:number = 0;
-        let drinkingList = new Drinking();
-        let food = new FoodMenu();
-        for (let value of drinkingList.getDrinkingMenu()){
-            for (let drink of this.getCustomerOrderDrinking()){
-                if(drink.Name == value.Name){
-                    totalPrice += value.Price*drink.NumberOfOrder
-                }
-
-            }
-        }
-
-        for (let value of food.getAllFood()){
-            for (let f of this.foodOrder){
-                if(f.Name == value.Name){
-                    totalPrice += value.Price*f.NumberOfOrder
-                }
-
-            }
-        }
-        return "Total price :" +totalPrice+" dollars";
-    }
-
-    getCustomerOrderDrinkingWithPrice(){
+    getCustomerOrderDrinkingWithPrice(drinking:{Name:string,NumberOfOrder:number}[]){
         let result = "              Drinking customer has ordered: \n";
         let drinkingList = new Drinking();
         
         for (let value of drinkingList.getDrinkingMenu()){
-            for (let drink of this.getCustomerOrderDrinking()){
+            for (let drink of drinking){
                 if(drink.Name == value.Name){
 
                     result += "Name :"+drink.Name+"; NumberOfOrder :"+drink.NumberOfOrder+"  ; Price : "+value.Price*drink.NumberOfOrder+" dollars"+"\n";
